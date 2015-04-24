@@ -1,23 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <!-- Load jQuery and Sheetrock from CloudFlare’s CDN. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/0.3.0/dist/jquery.sheetrock.min.js"></script>
-        <!-- Load Handlebars.js from CloudFlare’s CDN. -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
         
-        
-      <script type="text/javascript">
-          var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1FEOwhfmeOdBEaK8WAxBnTKDF6Lut5S_KttEjYZNnxeU#gid=0';
-          
-          
-
-
-
-
-
-      </script>
 
 
 
@@ -34,6 +18,33 @@
         <script src="./js/jquery-2.1.0.min.js"></script>
         <script src="./js/bootstrap.js"></script>
         <script src="./js/blocs.js"></script>
+        
+        <!-- Load  and Sheetrock from CloudFlare’s CDN. -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/0.3.0/dist/jquery.sheetrock.min.js"></script>
+        <!-- Load Handlebars.js from CloudFlare’s CDN. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+        
+        
+      <script type="text/javascript">
+$(document).ready(function() {
+    var HRTemplate = Handlebars.compile($('#p_template').html());
+
+    var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1FEOwhfmeOdBEaK8WAxBnTKDF6Lut5S_KttEjYZNnxeU#gid=0';
+          
+    $('#plist').sheetrock({
+        url: mySpreadsheet,
+        sql: "select B,C,D,E",
+        chunkSize: 5,
+        headersOff: true,
+        rowHandler: HRTemplate
+        });
+    });
+
+
+
+
+      </script>
+        
         <title>index - </title>
     </head>
     <body>
@@ -82,7 +93,7 @@
                     <div id="hacker-list">
                         <input class="form-control search" placeholder="Rechercher">
                         <br>
-                <ul id="p_list" class="list" style="list-style-type:none;padding-left:0px">
+                <ul id="plist" class="list" style="list-style-type:none;padding-left:0px">
                             
                     <script id="p_template" type="text/x-handlebars-template">
                         <li id="hacker-item">
@@ -111,16 +122,10 @@
         <!-- Main container END -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
         <script type="text/javascript">
-
-            var HRTemplate = Handlebars.compile($('#p_template').html());
-            $('#p_list').sheetrock({
-  url: mySpreadsheet,
-  sql: "select B,C,D,E",
-  chunkSize: 5,
-  headersOff: true,
-  rowHandler: HRTemplate
-});
-            
+            var options = {
+    valueNames: [ 'p_titre', 'p_auteur','p_tag','p_desc' ]
+};
+            var hackerList = new List('hacker-list', options);
           
 </script>
     </body>
@@ -129,17 +134,8 @@
 </html>
 
 
-<!-- <li>
-    <div class="row voffset">
-        <div class="col-sm-12">
-            <h3 class="mg-sm p_titre">Guide des médicaments vétérinaires<br></h3>
-            <h4 class="mg-sm">Maxime Côté &nbsp;- Paul Chatoyan<br></h4>
-            <h5 class="mg-sm p_tag">
-loi41 - pharmacie - vétérinaire</h5>
-            <p class="p_description">
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+<!-- 
+    
             <a href="index.html" class="a-btn pull-left">Affiche</a>
             <a href="index.html" class="a-btn pull-right">Documents</a>
-        </div>
-    </div>
-</li> -->
+       -->
