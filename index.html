@@ -1,30 +1,7 @@
 <!doctype html>
 <html>
     <head>
-
-      <script type="text/javascript">
-
-
-      var values = [
-          { p_titre: "titre1",
-            p_auteur:"auteur1",
-            p_tag:"tag1",
-            p_desc:"desc1",
-            p_gauche:"<a href='facebook.com' class='a-btn pull-left'>Affiche1</a>",
-            p_droite:"<a href='google.com' class='a-btn pull-right'>Documents1</a>",  },
-            { p_titre: "titre2",
-              p_auteur:"auteur2",
-              p_tag:"tag2",
-              p_desc:"desc2",
-              p_gauche:'<a href="facebook.com" class="a-btn pull-left">Affiche2</a>',
-              p_droite:"<a href='google.com' class='a-btn pull-right'>Documents2</a>",  }
-
-      ];
-
-
-
-
-      </script>
+        
 
 
 
@@ -41,6 +18,33 @@
         <script src="./js/jquery-2.1.0.min.js"></script>
         <script src="./js/bootstrap.js"></script>
         <script src="./js/blocs.js"></script>
+        
+        <!-- Load  and Sheetrock from CloudFlare’s CDN. -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/0.3.0/dist/jquery.sheetrock.min.js"></script>
+        <!-- Load Handlebars.js from CloudFlare’s CDN. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+        
+        
+      <script type="text/javascript">
+$(document).ready(function() {
+    var HRTemplate = Handlebars.compile($('#p_template').html());
+
+    var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1FEOwhfmeOdBEaK8WAxBnTKDF6Lut5S_KttEjYZNnxeU#gid=0';
+          
+    $('#plist').sheetrock({
+        url: mySpreadsheet,
+        sql: "select B,C,D,E",
+        chunkSize: 5,
+        headersOff: true,
+        rowHandler: HRTemplate
+        });
+    });
+
+
+
+
+      </script>
+        
         <title>index - </title>
     </head>
     <body>
@@ -51,67 +55,59 @@
                 <div class="container bloc-sm hero-nav">
                     <nav class="navbar row">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="index.html">Company</a>
-                            <button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
+                            
                         </div>
                         <div class="collapse navbar-collapse navbar-1">
-                            <ul class="site-navigation nav pull-right">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                            </ul>
+                            
                         </div>
                     </nav>
                 </div>
                 <div class="v-center text-center">
                     <div class="vc-content">
                         <h1 class="">
-				It's all about the big hero strapline.</h1>
+				Projets d'exploration</h1>
                         <h3 class="">
-				But don't forget about your jazzy tag line.</h3>
+				Finissants en pharmacie, cohorte 2015</h3>
+                        <h4 class="">Université Laval</h4>
                         <br/>
                         <br/>
                         <br/>
-                        <a href="index.html" class="btn-wire btn btn-xl">Get Started</a>
+                        <a href="https://docs.google.com/forms/d/1_ioqTJLzQVoQwx-xj7yuEwr4HNByHu-jMdtcmdWnpo0/viewform" class="btn-wire btn btn-xl" target="_blank">Soumettre un projet</a>
                         <a id="scroll-hero" class="btn-dwn" href="#"><span class="fa fa-chevron-down"></span></a>
                     </div>
                 </div>
             </div>
             <!-- Hero Bloc END -->
+            <!-- ScrollToTop Button -->
+<a class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget('1')"><icon class="fa fa-chevron-up"></icon></a>
+<!-- ScrollToTop Button END-->
             <!-- Footer - bloc-3 -->
             <div class="bloc  d-bloc" id="bloc-3">
                 <div class="container bloc-sm">
                     <div id="hacker-list">
                         <input class="form-control search" placeholder="Rechercher">
                         <br>
-                        <ul class="list" style="list-style-type:none;padding-left:0px">
-                        </ul>
-                    </div>
-
-            <!-- caneva invisible -->
-
-                    <div style="display:none">      <li id="hacker-item">
+                <ul id="plist" class="list" style="list-style-type:none;padding-left:0px">
+                            
+                    <script id="p_template" type="text/x-handlebars-template">
+                        <li id="hacker-item">
                               <div class="row voffset">
                                   <div class="col-sm-12">
-                                      <h3 class="mg-sm p_titre"></h3>
-                                      <h4 class="mg-sm p_auteur"></h4>
-                                      <h5 class="mg-sm p_tag"></h5>
-                                      <p class="p_desc"></p>
+                                      <h3 class="mg-sm p_titre">{{cells.titreduprojet}}</h3>
+                                      <h4 class="mg-sm p_auteur">{{cells.Auteurs}}</h4>
+                                      <h5 class="mg-sm p_tag">{{cells.Categories}}</h5>
+                                      <p class="p_desc">{{cells.Description}}</p>
                                     <span class="p_gauche"></span>
                                     <span class="p_droite"></span>
                                   </div>
                               </div>
                           </li>
-
+                    </script>
+                            
+                        </ul>
                     </div>
-
-
-            <!--FIN  caneva invisible -->
+  
+            
 
                 </div>
             </div>
@@ -120,13 +116,11 @@
         <!-- Main container END -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
         <script type="text/javascript">
-
-          var options = {
-    item: 'hacker-item'
+            var options = {
+    valueNames: [ 'p_titre', 'p_auteur','p_tag','p_desc' ]
 };
-
-
-var hackerList = new List('hacker-list', options, values);
+            var hackerList = new List('hacker-list', options);
+          
 </script>
     </body>
     <!-- Google Analytics -->
@@ -134,17 +128,8 @@ var hackerList = new List('hacker-list', options, values);
 </html>
 
 
-<!-- <li>
-    <div class="row voffset">
-        <div class="col-sm-12">
-            <h3 class="mg-sm p_titre">Guide des médicaments vétérinaires<br></h3>
-            <h4 class="mg-sm">Maxime Côté &nbsp;- Paul Chatoyan<br></h4>
-            <h5 class="mg-sm p_tag">
-loi41 - pharmacie - vétérinaire</h5>
-            <p class="p_description">
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
+<!-- 
+    
             <a href="index.html" class="a-btn pull-left">Affiche</a>
             <a href="index.html" class="a-btn pull-right">Documents</a>
-        </div>
-    </div>
-</li> -->
+       -->
