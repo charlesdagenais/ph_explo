@@ -1,25 +1,18 @@
 <!doctype html>
 <html>
     <head>
-
+        <!-- Load jQuery and Sheetrock from CloudFlare’s CDN. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/0.3.0/dist/jquery.sheetrock.min.js"></script>
+        <!-- Load Handlebars.js from CloudFlare’s CDN. -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+        
+        
       <script type="text/javascript">
+          var mySpreadsheet = 'https://docs.google.com/spreadsheet/ccc?key=1FEOwhfmeOdBEaK8WAxBnTKDF6Lut5S_KttEjYZNnxeU#gid=0';
+          
+          
 
-
-      var values = [
-          { p_titre: "titre1",
-            p_auteur:"auteur1",
-            p_tag:"tag1",
-            p_desc:"desc1",
-            p_gauche:"<a href='facebook.com' class='a-btn pull-left'>Affiche1</a>",
-            p_droite:"<a href='google.com' class='a-btn pull-right'>Documents1</a>",  },
-            { p_titre: "titre2",
-              p_auteur:"auteur2",
-              p_tag:"tag2",
-              p_desc:"desc2",
-              p_gauche:'<a href="facebook.com" class="a-btn pull-left">Affiche2</a>',
-              p_droite:"<a href='google.com' class='a-btn pull-right'>Documents2</a>",  }
-
-      ];
 
 
 
@@ -89,29 +82,27 @@
                     <div id="hacker-list">
                         <input class="form-control search" placeholder="Rechercher">
                         <br>
-                        <ul class="list" style="list-style-type:none;padding-left:0px">
-                        </ul>
-                    </div>
-
-            <!-- caneva invisible -->
-
-                    <div style="display:none">      <li id="hacker-item">
+                <ul id="p_list" class="list" style="list-style-type:none;padding-left:0px">
+                            
+                    <script id="p_template" type="text/x-handlebars-template">
+                        <li id="hacker-item">
                               <div class="row voffset">
                                   <div class="col-sm-12">
-                                      <h3 class="mg-sm p_titre"></h3>
-                                      <h4 class="mg-sm p_auteur"></h4>
-                                      <h5 class="mg-sm p_tag"></h5>
-                                      <p class="p_desc"></p>
+                                      <h3 class="mg-sm p_titre">{{cells.titreduprojet}}</h3>
+                                      <h4 class="mg-sm p_auteur">{{cells.Auteurs}}</h4>
+                                      <h5 class="mg-sm p_tag">{{cells.Categories}}</h5>
+                                      <p class="p_desc">{{cells.Description}}</p>
                                     <span class="p_gauche"></span>
                                     <span class="p_droite"></span>
                                   </div>
                               </div>
                           </li>
-
+                    </script>
+                            
+                        </ul>
                     </div>
-
-
-            <!--FIN  caneva invisible -->
+  
+            
 
                 </div>
             </div>
@@ -121,12 +112,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
         <script type="text/javascript">
 
-          var options = {
-    item: 'hacker-item'
-};
-
-
-var hackerList = new List('hacker-list', options, values);
+            var HRTemplate = Handlebars.compile($('#p_template').html());
+            $('#p_list').sheetrock({
+  url: mySpreadsheet,
+  sql: "select B,C,D,E",
+  chunkSize: 5,
+  headersOff: true,
+  rowHandler: HRTemplate
+});
+            
+          
 </script>
     </body>
     <!-- Google Analytics -->
