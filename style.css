@@ -12,6 +12,8 @@ body{
 }
 a:hover{text-decoration: none; cursor:pointer;}
 
+button{outline: none!important;} /* Prevent ugly blue glow on chrome and safari */
+
 
    
 
@@ -28,32 +30,44 @@ a:hover{text-decoration: none; cursor:pointer;}
 /* Site container width */
 
 .container{
-	max-width:1170px;
+	width:100%;
+	padding-left:15px;
+	padding-right:15px;
 }
 
-/* Blocs */
+/* = Blocs
+-------------------------------------------------------------- */
 
 .bloc{
 	width:100%;
 	clear:both;
 	background: 50% 50% no-repeat;
-	padding;
-	0 50px;
+	padding:0 50px;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 }
+.bloc .container{
+	padding-left:0;
+	padding-right:0;
+}
 
 
-/* Bloc sizes */
+/* Sizes */
 
+.bloc-lg{
+	padding:100px 50px;
+}
+.bloc-md{
+	padding:50px;
+}
 .bloc-sm{
 	padding:20px 50px;
 }
 
 
-/* Bloc - Dark theme */
+/* Dark theme */
 
 .d-bloc{
 	color:rgba(255,255,255,.7);
@@ -64,7 +78,7 @@ a:hover{text-decoration: none; cursor:pointer;}
 .d-bloc h1, .d-bloc h2, .d-bloc h3, .d-bloc h4,.d-bloc h5, .d-bloc h6, .d-bloc .ico{
 	color:rgba(255,255,255,.9);
 }
-.d-bloc .icon-round{
+.d-bloc .icon-round,.d-bloc .icon-square,.d-bloc .icon-rounded,.d-bloc .icon-semi-rounded-a,.d-bloc .icon-semi-rounded-b{
 	border-color:rgba(255,255,255,.9);
 }
 .d-bloc .divider-h span{
@@ -85,7 +99,7 @@ a:hover{text-decoration: none; cursor:pointer;}
 }
 
 
-/* Bloc - Light theme */
+/* Light theme */
 
 .l-bloc{
 	color:rgba(0,0,0,.5);
@@ -96,7 +110,7 @@ a:hover{text-decoration: none; cursor:pointer;}
 .l-bloc h1,.l-bloc h2,.l-bloc h3,.l-bloc h4,.l-bloc h5, .l-bloc h6, .l-bloc .ico{
 	color:rgba(0,0,0,.7);
 }
-.l-bloc .icon-round{
+.l-bloc .icon-round,.l-bloc .icon-square,.l-bloc .icon-rounded,.l-bloc .icon-semi-rounded-a,.l-bloc .icon-semi-rounded-b{
 	border-color:rgba(0,0,0,.7);
 }
 .l-bloc .divider-h span{
@@ -116,33 +130,31 @@ a:hover{text-decoration: none; cursor:pointer;}
 	border-color:rgba(0,0,0,.3);
 }
 
-/* Row Margin Offsets */
-
-.voffset{
-	margin-top:30px;
-}
-
 
 /* Custom bloc styling */
 
-#hero-bloc{
-	background-color:#405fa4;
+#nav-bloc{
+	background-color:#142b75;
 }
-#nav-bloc,#bloc-2{
-	background-color:#FFF;
+#bloc-1,#bloc-5{
+	background-color:#3e89b7;
 }
-#bloc-3{
-	background-color:#6c6c6c;
+#bloc-2,#bloc-3,#bloc-4{
+	background-color:#e8d9b9;
 }
-#hero-bloc h1{
-	font-size:50px;
+#bloc-1 h1{
+	font-size: 46px;
 }
-#hero-bloc h3{
-	font-size:30px;
+#bloc-1 h4{
+	font-size: 20px;
+}
+#bloc-2 p{
+	font-size: 15px;
 }
 
 
-/* NavBar */
+/* = NavBar
+-------------------------------------------------------------- */
 
 .navbar{
 	margin-bottom: 0;
@@ -207,57 +219,21 @@ a:hover{text-decoration: none; cursor:pointer;}
 		right:0;
 	}
 }
-/* Hero bloc */
-
-.hero{
-	padding-top:0;
-}
-.hero-nav{
-	position:absolute;
-	margin: 0 auto;
-	left:0;
-	right:0;
-}
-.v-center{
-	width:100%;
-	height: 100%;
-	display: table;
-}
-.v-center .vc-content{
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-	width: 100%;
-	height: 100%;
-}
-.hero .btn-dwn{
-	width: 58px;
-	height: 58px;
-	line-height: 58px;
-	margin: 0 0 0 -29px;
-	padding: 0;
-	border-radius: 50%;
-	text-align: center;
-	font-size: 18px;
-	color: rgba(255,255,255,.8);
-	background: rgba(0,0,0,.6);
-	position: absolute;
-	left: 50%;
-	bottom: 60px;
-	border:0;
-}
-.hero .btn-dwn:hover{
-	color: rgba(255,255,255,1);
+.hero .hero-nav{
+	padding-left:inherit;
+	padding-right:inherit;
 }
 
-/* Bric adjustment margins */
+/* = Bric adjustment margins
+-------------------------------------------------------------- */
 
-.mg-sm{
+.mg-md{
 	margin-top:10px;
-	margin-bottom:5px;
+	margin-bottom:20px;
 }
 
-/* Buttons */
+/* = Buttons
+-------------------------------------------------------------- */
 
 .btn{
 	margin: 0 5px 5px 0;
@@ -269,36 +245,57 @@ a:hover{text-decoration: none; cursor:pointer;}
 	color:#FFF!important;
 	background:rgba(0,0,0,.3);
 }
-.btn-wire{
-	background:transparent!important;
-	border:2px solid transparent;
+
+/* Prevent ugly blue glow on chrome and safari */
+button{
+	outline: none!important;
 }
-.btn-wire:hover{
-	background:transparent!important;
-	border:2px solid transparent;
-}
+
 .btn-xl{
 	padding: 16px 40px;
 	font-size: 28px;
 }
-.a-btn{
-	font-size: 14px;
-	font-weight: normal;
-	padding: 6px 10px 6px 0;
-	line-height: 1.42857143;
-	 display:inline-block;
+
+/* Button colour styles */
+
+.btn-c-3{
+	background:#3e89b7;
+	color:#FFF!important;
 }
-.text-center .a-btn{
-	padding: 6px 0;
+.btn-c-3:hover{
+	background:#3e89b7;
+	color:#FFF!important;
+}
+
+/* Link colour styles */
+
+.ltc-5{
+	color:#ffffff!important;
+}
+.ltc-5:hover{
+	color:#cccccc!important;
 }
 
 
 
 
 
+/* = Dividers
+-------------------------------------------------------------- */
+.divider-h{
+	padding:20px 0;
+}
+.divider-h span{
+	display: block;
+	border-top:1px solid transparent;
+}
+.divider-half{
+	width: 50%;
+	margin: 0 auto;
+}
 
-
-/*Forms*/
+/* = Forms
+-------------------------------------------------------------- */
 
 .form-control{
 	border-color:rgba(0,0,0,.1);
@@ -310,11 +307,33 @@ a:hover{text-decoration: none; cursor:pointer;}
 iframe{
 	border:0;
 }
+/* ScrollToTop button */
+
+.scrollToTop{
+	width:40px;
+	height:40px;
+	position:fixed;
+	bottom:20px;
+	right:20px;
+	 opacity: 0;
+	z-index: 500;
+	transition: all .3s ease-in-out;
+}
+.scrollToTop icon{
+	margin-top: 6px;
+}
+.showScrollTop{
+	opacity: 1;
+}
 
 
 
-/* Mobile adjustments */
-
+/* = Mobile adjustments 
+-------------------------------------------------------------- */
+@media (max-width: 768px)
+{
+    .b-parallax{background-attachment:scroll;}
+}
 @media (max-width: 767px)
 {
     .page-container{
@@ -334,13 +353,13 @@ iframe{
         font-size:25px;
     }
     .bloc{
-        text-align: center;
         padding-left: 0; 
         padding-right: 0;
-        -webkit-background-size: auto 200%;
-        -moz-background-size: auto 200%;
-        -o-background-size: auto 200%;
-        background-size: auto 200%;
+        text-align: center!important;
+        -webkit-background-size: auto 100%;
+        -moz-background-size: auto 100%;
+        -o-background-size: auto 100%;
+        background-size: auto 100%;
     }
     .b-parallax{
         background-attachment:scroll;
@@ -377,8 +396,8 @@ iframe{
         color:rgba(255,255,255,.6);
     }
     .hero-nav{
-	   left:-1px;
-	   right:-1px;
+        left:-1px;
+        right:-1px;
     }
     .navbar-collapse{
         padding:0;

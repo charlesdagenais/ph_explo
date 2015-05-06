@@ -1,28 +1,25 @@
 <!doctype html>
 <html>
-    <head>
-        
-
-
-
-
-
-        <meta charset="utf-8">
-        <meta name="keywords" content="">
-        <meta name="description" content="">
-        <link rel="shortcut icon" type="image/png" href="favicon.png"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
-        <link rel="stylesheet" id="ppstyle" type="text/css" href="style.css">
-        <link rel="stylesheet" href="./css/font-awesome.min.css"/>
-        <script src="./js/jquery-2.1.0.min.js"></script>
-        <script src="./js/bootstrap.js"></script>
-        <script src="./js/blocs.js"></script>
-        
-        <!-- Load  and Sheetrock from CloudFlare’s CDN. -->
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+    <link rel="stylesheet" id="ppstyle" type="text/css" href="style.css">
+    <link rel='stylesheet' href='./css/font-awesome.min.css'/>
+    <script src="./js/jquery-2.1.0.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/blocs.js"></script>
+    <script src='./js/jqBootstrapValidation.js'></script>
+	<script src='./js/formHandler.js'></script>
+    
+     <!-- Load  and Sheetrock from CloudFlare’s CDN. -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/0.3.0/dist/jquery.sheetrock.min.js"></script>
         <!-- Load Handlebars.js from CloudFlare’s CDN. -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
         
         
       <script type="text/javascript">
@@ -34,57 +31,140 @@ $(document).ready(function() {
     $('#plist').sheetrock({
         url: mySpreadsheet,
         sql: "select B,C,D,E",
-        chunkSize: 5,
         headersOff: true,
         rowHandler: HRTemplate
+        }); 
+     
+    
+    
+     $("#filter").keyup(function(){
+ 
+        // Retrieve the input field text and reset the count to zero
+        var filter = $(this).val(), count = 0;
+ 
+        // Loop through the comment list
+        $("#plist li").each(function(){
+ 
+            // If the list item does not contain the text phrase fade it out
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).fadeOut();
+ 
+            // Show the list item if the phrase matches and increase the count by 1
+            } else {
+                $(this).show();
+                count++;
+            }
         });
+ 
+        // Update the count
+        
     });
-
+    
+    
+    });
+          
+          
+         
 
 
 
       </script>
-        
-        <title>index - </title>
-    </head>
-    <body>
-        <!-- Main container -->
-        <div class="page-container">
-            <!-- Hero Bloc -->
-            <div id="hero-bloc" class="bloc hero bgc-3 d-bloc">
-                <div class="container bloc-sm hero-nav">
-                    <nav class="navbar row">
-                        <div class="navbar-header">
-                            
-                        </div>
-                        <div class="collapse navbar-collapse navbar-1">
-                            
-                        </div>
-                    </nav>
-                </div>
-                <div class="v-center text-center">
-                    <div class="vc-content">
-                        <h1 class="">
-				Projets d'exploration</h1>
-                        <h3 class="">
-				Finissants en pharmacie, cohorte 2015</h3>
-                        <h4 class="">Université Laval</h4>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <a href="https://docs.google.com/forms/d/1_ioqTJLzQVoQwx-xj7yuEwr4HNByHu-jMdtcmdWnpo0/viewform" class="btn-wire btn btn-xl" target="_blank">Soumettre un projet</a>
-                        <a id="scroll-hero" class="btn-dwn" href="#"><span class="fa fa-chevron-down"></span></a>
-                    </div>
-                </div>
-            </div>
-            <!-- Hero Bloc END -->
-            
-            <!-- Footer - bloc-3 -->
-            <div class="bloc  d-bloc" id="bloc-3">
-                <div class="container bloc-sm">
-                    <div id="hacker-list">
-                        <input class="form-control search" placeholder="Rechercher">
-                        <br>
+    <SCRIPT language="JavaScript">
+<!--hide
+/*
+var password;
+
+var pass1="cool";
+
+password=prompt('Please enter your password to view this page!',' ');
+
+if (password==pass1)
+  alert('Password Correct! Click OK to enter!');
+else
+   {
+    window.location="http://www.pageresource.com/jscript/jpass.htm";
+    }
+*/
+//-->
+</SCRIPT>
+    <title>Projets d'exploration</title>
+</head>
+<body>
+<!-- Main container -->
+<div class="page-container">
+    
+<!-- Navigation Bloc -->
+<div class="bloc bgc-2 d-bloc" id="nav-bloc">
+	<div class="container">
+		<nav class="navbar row">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html"></a>
+				<button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
+					<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse navbar-1">
+				<ul class="site-navigation nav">
+					<li>
+						<a href="index.html" class="ltc-5">Accueil</a>
+					</li>
+					<li>
+						<a href="soumettre.html" class="ltc-5">Soumettre un projet</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>
+<!-- Navigation Bloc END -->
+
+<!-- bloc-1 -->
+<div class="bloc  d-bloc" id="bloc-1">
+	<div class="container bloc-lg">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="mg-md text-center ">
+					<strong>Projets d'exploration</strong>
+				</h1>
+				<h2 class="mg-md text-center">
+					des étudiants en pharmacie, cohorte 2011-2015
+				</h2>
+				<h4 class="mg-md  text-center">
+					Université Laval
+				</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- bloc-1 END -->
+
+<!-- bloc-2 -->
+<div class="bloc  l-bloc" id="bloc-2">
+	<div class="container bloc-md">
+		<div class="row">
+			<div class="col-sm-12">
+				<h3 class="mg-md">
+					À propos
+				</h3>
+				<p class="">
+					Cette page a été créé dans le but de rendre disponible à plus grande échelle le contenu des projets d&rsquo;exploration réalisés par les étudiants de 4e année au Doctorat en pharmacie de l&rsquo;Université Laval.<br /><br />L&rsquo;utilisation dans l&rsquo;intégralité ou en partie des projets rendus disponibles sur ce site devrait s&rsquo;accompagner d&rsquo;une mention créditant les auteurs du projet d&rsquo;origine.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- bloc-2 END -->
+
+<!-- bloc-3 -->
+<div class="bloc  l-bloc" id="bloc-3">
+	<div class="container bloc-sm">
+		<div class="row">
+			<div class="col-sm-12">
+					<div class="form-group">
+						 <div id="hacker-list">
+                             <form id="live-search" action="" class="styled" method="post">
+                        <input class="search form-control"  placeholder="Rechercher un projet" type="text" id="filter"/>
+                         <br>
                 <ul id="plist" class="list" style="list-style-type:none;padding-left:0px">
                             
                     <script id="p_template" type="text/x-handlebars-template">
@@ -104,30 +184,43 @@ $(document).ready(function() {
                             
                         </ul>
                     </div>
-  
-            
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- bloc-3 END -->
 
-                </div>
-            </div>
-            <!-- Footer - bloc-3 END -->
-        </div>
-        <!-- Main container END -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
-        <script type="text/javascript">
-            var options = {
-    valueNames: [ 'p_titre', 'p_auteur','p_tag','p_desc' ]
-};
-            var hackerList = new List('hacker-list', options);
-          
-</script>
-    </body>
-    <!-- Google Analytics -->
-    <!-- Google Analytics END -->
-</html>
+<!-- ScrollToTop Button -->
+<a class="bloc-button btn btn-d scrollToTop" onclick="scrollToTarget('1')"><icon class="fa fa-chevron-up"></icon></a>
+<!-- ScrollToTop Button END-->
 
 
-<!-- 
+<!-- Footer - bloc-5 -->
+<div class="bloc  d-bloc" id="bloc-5">
+	<div class="container bloc-md">
+		<div class="col-sm-12 col-md-8 col-md-offset-2">
+			<div class="divider-h">
+				<span class="divider"></span>
+			</div>
+			<p class="text-right">
+				<strong>Réalisation: Charles Dagenais, 2015</strong>
+			</p>
+		</div>
+	</div>
+</div>
     
-            <a href="index.html" class="a-btn pull-left">Affiche</a>
-            <a href="index.html" class="a-btn pull-right">Documents</a>
-       -->
+<!-- Footer - bloc-5 END -->
+</div>
+<!-- Main container END -->
+
+        
+            
+          
+</body>
+    
+<!-- Google Analytics -->
+
+<!-- Google Analytics END -->
+
+</html>
